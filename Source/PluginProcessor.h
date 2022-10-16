@@ -56,6 +56,11 @@ public:
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
+    // A value Tree state to attach all local variables to GUI
+    static juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
+
+    juce::AudioProcessorValueTreeState stateHolder{ *this, nullptr, "Parameters", createParameterLayout() };
+
 private:
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Simple_EqualizerAudioProcessor)
